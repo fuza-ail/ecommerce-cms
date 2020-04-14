@@ -1,7 +1,7 @@
 const { Product } = require('../models');
 
 function authorization(req,res,next){
-  Product.findByPk(req.body.params)
+  Product.findByPk(req.params.id)
   .then(product=>{
     if(product){
       if(product.AdminId == req.user.UserId){
@@ -15,7 +15,7 @@ function authorization(req,res,next){
     }else{
       throw {
         status: 404,
-        message: 'Produt not found'
+        message: 'Product not found'
       }
     }
   })

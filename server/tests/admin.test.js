@@ -1,10 +1,14 @@
 const request = require('supertest');
 const app = require('../server');
 
+// afterAll(()=>{
+
+// })
+
 describe('Admin routes',()=>{
   describe('Post /admin/login',()=>{
     it('Valid login',(done)=>{
-      request(app)
+      return request(app)
         .post('/admin/login')
         .send({email: 'admin@gmail.com', password:'rahasia'})
         .then(response=>{
@@ -13,19 +17,8 @@ describe('Admin routes',()=>{
           done()
         })
     })
-    
-    // test('Invalid login, empty field',()=>{
-    //   request(app)
-    //     .post('/admin/login')
-    //     .send({email: '', password: ''})
-    //     .then(response=>{
-    //       let {status, body} = response;
-    //       expect(status).toBe(400)
-    //     })
-    // })
-
     it('Invalid login, email not found',(done)=>{
-      request(app)
+      return request(app)
         .post('/admin/login')
         .send({email:'admin2@gmail.com', password: 'rahasia'})
         .then(response=>{
@@ -36,7 +29,7 @@ describe('Admin routes',()=>{
     })
 
     it('Invalid login, wrong password',(done)=>{
-      request(app)
+      return request(app)
         .post('/admin/login')
         .send({email:'admin@gmail.com', password: 'rasia'})
         .then(response=>{
