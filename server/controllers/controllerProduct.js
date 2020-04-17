@@ -21,7 +21,7 @@ class controllerProduct {
       AdminId: req.user.UserId
     })
       .then(product => {
-        res.status(201).json({ message: `${product.name} has been created` })
+        res.status(201).json(product)
       })
       .catch(err => {
         next(err)
@@ -53,7 +53,7 @@ class controllerProduct {
         },{where:{id:req.params.id}})
       })
       .then(product=>{
-        res.status(200).json({messag: `${product.name} has been edited`})
+        res.status(200).json(product)
       })
       .catch(err=>{
         next(err)

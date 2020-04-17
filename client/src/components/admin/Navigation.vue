@@ -1,6 +1,6 @@
 <template>
   <div id="navigation">
-    <h1>Dasboard</h1>
+    <h2>Dasboard</h2>
     <b-button variant="info" id="logout-button" @click="logout">Logoout</b-button>
   </div>
 </template>
@@ -24,8 +24,9 @@
     align-items: center;
     background: rgb(197, 197, 197);
     padding: 1px 20px;
+    width: 100%;
   }
   #logout-button{
-    height: 40px;
+    padding: 2px 5px;
   }
 </style>

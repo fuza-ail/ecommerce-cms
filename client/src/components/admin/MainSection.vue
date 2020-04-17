@@ -6,7 +6,7 @@
       </router-link>
       <router-view></router-view>
     </div>
-    <hr>
+    <hr style="border:1px grey solid">
     <div class="list">
       <table>
         <thead >
@@ -31,8 +31,8 @@
             <td>{{item.category}}</td>
             <td>{{item.description}}</td>
             <td>
-              <b-button variant="info" style="padding:3px;margin:2px 3px;">Edit</b-button>
-              <b-button variant="danger" style="padding:3px;margin:2px 3px;">Delete</b-button>
+              <b-button variant="info" style="padding:3px 5px;margin:3px 3px;">Edit</b-button>
+              <b-button variant="danger" style="padding:3px;margin:2px 3px;" @click="deleteItem(item)">Delete</b-button>
             </td>
           </tr>
         </tbody>
@@ -57,6 +57,11 @@ export default {
     products() {
       return this.$store.state.products;
     }
+  },
+  methods:{
+    deleteItem(item){
+      this.$store.dispatch('deleteData',item)
+    }
   }
 };
 </script>
@@ -69,7 +74,7 @@ export default {
   th{
     background:rgb(235, 235, 235);
     padding: 5px 30px;
-
+    border: 1px solid rgb(182, 182, 182);
   }
   #main-section{
     text-align: center;
