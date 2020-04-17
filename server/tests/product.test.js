@@ -31,8 +31,16 @@ let products = [
   {
     name: '',
     image_url: '',
-    price: null,
-    stock: null,
+    price: 100,
+    stock: 100,
+    category: 'category',
+    description: 'description'
+  },
+  {
+    name: 'sony',
+    image_url: 'sony',
+    price: -10,
+    stock: 100,
     category: 'category',
     description: 'description'
   }
@@ -68,6 +76,30 @@ describe('Product routes', () => {
         .then(response => {
           let { status, body } = response
           expect(status).toBe(201)
+          done()
+        })
+    })
+
+    it('Empty value', (done) => {
+      return request(app)
+        .post('/products')
+        .set('access_token', token.valid)
+        .send(products[1])
+        .then(response => {
+          let { status, body } = response
+          expect(status).toBe(400)
+          done()
+        })
+    })
+
+    it('Must be greater than 0', (done) => {
+      return request(app)
+        .post('/products')
+        .set('access_token', token.valid)
+        .send(products[2])
+        .then(response => {
+          let { status, body } = response
+          expect(status).toBe(400)
           done()
         })
     })
@@ -154,7 +186,7 @@ describe('Product routes', () => {
   })
 
   describe('Put /products/:id', () => {
-    it('Success delete', (done) => {
+    it('Success edit', (done) => {
       return request(app)
         .delete('/products/5')
         .set('access_token', token.valid)
@@ -162,6 +194,30 @@ describe('Product routes', () => {
         .then(response => {
           let { status, body } = response
           expect(status).toBe(200)
+          done()
+        })
+    })
+
+    it('Not Empty value', (done) => {
+      return request(app)
+        .delete('/products/5')
+        .set('access_token', token.valid)
+        .send(products[1])
+        .then(response => {
+          let { status, body } = response
+          expect(status).toBe(400)
+          done()
+        })
+    })
+
+    it('Must be greater than 0', (done) => {
+      return request(app)
+        .delete('/products/5')
+        .set('access_token', token.valid)
+        .send(products[2])
+        .then(response => {
+          let { status, body } = response
+          expect(status).toBe(400)
           done()
         })
     })
