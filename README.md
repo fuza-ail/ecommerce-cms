@@ -1,6 +1,7 @@
 # e-commerce-cms
 Content Management System for E-Commerce
 
+Admin link: https://ecommerce-4fca5.web.app/admin/login
 
 ### Restfull API
 
