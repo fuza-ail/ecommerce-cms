@@ -46,14 +46,7 @@ export default {
         description: this.description
       };
       this.$store.dispatch("editData", data);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `Data with name ${data.name} successfully edited`,
-        showConfirmButton: false,
-        timer: 1000
-      });
-      // this.$router.push({ path: "/admin/dashboard" })
+      this.$router.push({ path: "/admin/dashboard" })
     }
   }
 };

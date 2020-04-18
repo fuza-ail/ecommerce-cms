@@ -45,7 +45,7 @@ export default new Vuex.Store({
     getData({commit}){
       axios({
         method:'get',
-        url:'https://sleepy-woodland-73566.herokuapp.com/admin/products',
+        url:'http://localhost:3000/admin/products',
       })
       .then(response=>{
         commit('fillData',response.data);
@@ -57,7 +57,7 @@ export default new Vuex.Store({
     deleteData({commit},payload){
       axios({
         method: 'delete',
-        url:`https://sleepy-woodland-73566.herokuapp.com/admin/products/${payload.id}`,
+        url:`http://localhost:3000/admin/products/${payload.id}`,
         headers:{
           access_token: localStorage.getItem('access_token')
         }
@@ -72,33 +72,57 @@ export default new Vuex.Store({
     addData({commit},payload){
       axios({
         method: 'post',
-        url: `https://sleepy-woodland-73566.herokuapp.com/admin/products`,
+        url: `http://localhost:3000/admin/products`,
         data:payload,
         headers:{
           access_token: localStorage.getItem('access_token')
         }
       })
       .then(response=>{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Data with name ${response.data.name} successfully created`,
+          showConfirmButton: false,
+          timer: 1000
+        });
         commit('AddData',response.data)
       })
       .catch(err=>{
-        console.log(err.response)
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: `${err.response.data.message}`,
+          showConfirmButton: true,
+        });
       })
     },
     editData({commit}, payload){
       axios({
         method:'put',
-        url: `https://sleepy-woodland-73566.herokuapp.com/admin/products/${payload.id}`,
+        url: `http://localhost:3000/admin/products/${payload.id}`,
         data: payload,
         headers:{
           access_token: localStorage.getItem('access_token')
         }
       })
       .then(response=>{
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `Data with name ${response.data.name} successfully edited`,
+          showConfirmButton: false,
+          timer: 1000
+        });
         commit('EditData',response.data)
       })
       .catch(err=>{
-        console.log(err.response)
+        Swal.fire({
+          position: "center",
+          icon: "warning",
+          title: `Value can not be empty`,
+          showConfirmButton: true,
+        });
       })
     }
   },

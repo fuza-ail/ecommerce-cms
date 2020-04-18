@@ -54,13 +54,6 @@ export default {
       this.stock='';
       this.desc='';
       this.selected = null;
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: `${data.name} successfully added`,
-        showConfirmButton: false,
-        timer: 1500
-      });
     }
   }
 };

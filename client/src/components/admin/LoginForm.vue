@@ -26,7 +26,7 @@ export default {
     login() {
       axios({
         method: "post",
-        url: "https://sleepy-woodland-73566.herokuapp.com/admin/login",
+        url: "http://localhost:3000/admin/login",
         data: {
           email: this.email,
           password: this.password
@@ -50,7 +50,6 @@ export default {
             icon: "error",
             title: "Oops...",
             text: `${err.response.data.message}`,
-            footer: "<a href>Why do I have this issue?</a>"
           });
         });
     }
