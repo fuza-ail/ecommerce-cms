@@ -1,8 +1,8 @@
 <template>
   <div id="add-product">
     <b-form @submit.prevent="addItem" id="the-form">
-      <b-input placeholder="Product's Name" v-model="name"></b-input>
-      <b-input placeholder="Product's Image URL" v-model="imageUrl"></b-input>
+      <b-input placeholder="Name" v-model="name"></b-input>
+      <b-input placeholder="Image URL" v-model="imageUrl"></b-input>
       <b-input placeholder="Price" type="number" v-model="price"></b-input>
       <b-input placeholder="Stock" type="number" v-model="stock"></b-input>
       <b-form-select v-model="selected" :options="category"></b-form-select>
@@ -54,6 +54,13 @@ export default {
       this.stock='';
       this.desc='';
       this.selected = null;
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${data.name} successfully added`,
+        showConfirmButton: false,
+        timer: 1500
+      });
     }
   }
 };

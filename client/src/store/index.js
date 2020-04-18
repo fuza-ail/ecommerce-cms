@@ -22,8 +22,22 @@ export default new Vuex.Store({
       state.products = state.products.filter(product => product.id !== payload.id)
     },
     AddData(state,payload){
-      console.log(payload,'ni payload')
       state.products.push(payload)
+    },
+    EditData(state,payload){
+      // state.products.map(el=>{
+      //   if(el.id == payload.id){
+      //     el.name = payload.name;
+      //     el.image_url = payload.image_url;
+      //     el.price = payload.price;
+      //     el.stock = payload.stock;
+      //     el.category = payload.category;
+      //     el.description = payload.description;
+      //     return el
+      //   }
+      // })
+      let index = state.products.findIndex(x => x.id == payload.id)
+      state.products.splice(index,1,payload)
     }
   },
   actions: {
@@ -65,6 +79,22 @@ export default new Vuex.Store({
       })
       .then(response=>{
         commit('AddData',response.data)
+      })
+      .catch(err=>{
+        console.log(err.response)
+      })
+    },
+    editData({commit}, payload){
+      axios({
+        method:'put',
+        url: `http://localhost:3000/admin/products/${payload.id}`,
+        data: payload,
+        headers:{
+          access_token: localStorage.getItem('access_token')
+        }
+      })
+      .then(response=>{
+        commit('EditData',response.data)
       })
       .catch(err=>{
         console.log(err.response)

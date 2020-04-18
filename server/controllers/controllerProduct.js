@@ -41,7 +41,8 @@ class controllerProduct {
   }
 
   static editProduct(req, res, next) {
-    Product.findByPk(req.params.id)
+    let idProd = req.params.id
+    Product.findByPk(idProd)
       .then(product => {
         return Product.update({
           name: req.body.name,
@@ -50,7 +51,10 @@ class controllerProduct {
           stock: req.body.stock,
           category: req.body.category,
           description: req.body.description,
-        },{where:{id:req.params.id}})
+        },{where:{id:idProd}})
+      })
+      .then(product=>{
+        return Product.findByPk(idProd)
       })
       .then(product=>{
         res.status(200).json(product)

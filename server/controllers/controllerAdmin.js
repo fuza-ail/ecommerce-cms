@@ -14,7 +14,8 @@ class controllerAdmin {
               UserEmail : admin.email
             }, process.env.TOKEN_KEY)
             res.status(200).json({
-              access_token : token
+              access_token : token,
+              email:admin.email
             })
           }else{
             throw {
