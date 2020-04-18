@@ -44,7 +44,7 @@ export default new Vuex.Store({
     getData({commit}){
       axios({
         method:'get',
-        url:'http://localhost:3000/admin/products',
+        url:'https://sleepy-woodland-73566.herokuapp.com/admin/products',
       })
       .then(response=>{
         commit('fillData',response.data);
@@ -56,7 +56,7 @@ export default new Vuex.Store({
     deleteData({commit},payload){
       axios({
         method: 'delete',
-        url:`http://localhost:3000/admin/products/${payload.id}`,
+        url:`https://sleepy-woodland-73566.herokuapp.com/admin/products/${payload.id}`,
         headers:{
           access_token: localStorage.getItem('access_token')
         }
@@ -71,7 +71,7 @@ export default new Vuex.Store({
     addData({commit},payload){
       axios({
         method: 'post',
-        url: `http://localhost:3000/admin/products`,
+        url: `https://sleepy-woodland-73566.herokuapp.com/admin/products`,
         data:payload,
         headers:{
           access_token: localStorage.getItem('access_token')
@@ -87,7 +87,7 @@ export default new Vuex.Store({
     editData({commit}, payload){
       axios({
         method:'put',
-        url: `http://localhost:3000/admin/products/${payload.id}`,
+        url: `https://sleepy-woodland-73566.herokuapp.com/admin/products/${payload.id}`,
         data: payload,
         headers:{
           access_token: localStorage.getItem('access_token')

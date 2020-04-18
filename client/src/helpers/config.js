@@ -2,7 +2,7 @@ let config;
 
 if (process.env.NODE_ENV === "production") {
   config = {
-    $url: "https://cms-alan.herokuapp.com",
+    $url: "https://sleepy-woodland-73566.herokuapp.com/",
   };
 } else {
   config = {
