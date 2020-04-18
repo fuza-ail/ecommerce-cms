@@ -43,6 +43,7 @@ export default {
           localStorage.setItem("access_token", response.data.access_token);
           this.$store.commit("fillToken", response.data);
           this.$router.push({ path: "/admin/dashboard" });
+          console.log(response)
         })
         .catch(err => {
           Swal.fire({
