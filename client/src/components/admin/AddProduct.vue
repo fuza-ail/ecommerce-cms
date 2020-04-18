@@ -9,7 +9,7 @@
       <b-input placeholder="Description" type="text" v-model="desc"></b-input>
       <b-button type="submit" variant="info" id="login-button" >Create</b-button>
       <br />
-      <b-button @click="back" type="submit" variant="dark" id="login-button">Cancel</b-button>
+      <b-button @click.prevent="back" type="submit" variant="dark" id="login-button">Cancel</b-button>
     </b-form>
   </div>
 </template>

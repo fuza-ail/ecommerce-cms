@@ -36,16 +36,23 @@ export default {
   props: ["product"],
   methods: {
     editItem() {
-      let data ={
-        id:this.id,
+      let data = {
+        id: this.id,
         name: this.name,
         image_url: this.imageUrl,
-        price:this.price,
+        price: this.price,
         stock: this.stock,
         category: this.selected,
         description: this.description
-      }
-      this.$store.dispatch('editData',data)
+      };
+      this.$store.dispatch("editData", data);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Data with name ${data.name} successfully edited`,
+        showConfirmButton: false,
+        timer: 1000
+      });
       // this.$router.push({ path: "/admin/dashboard" })
     }
   }
@@ -53,9 +60,9 @@ export default {
 </script>
 
 <style scoped>
-  input,
-  select {
-    margin: 5px auto;
-    width: 300px;
-  }
+input,
+select {
+  margin: 5px auto;
+  width: 300px;
+}
 </style>

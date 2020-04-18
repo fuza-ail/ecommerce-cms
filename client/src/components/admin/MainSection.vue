@@ -35,6 +35,7 @@
                 v-b-modal.modal-center
                 variant="info"
                 style="padding:3px 5px;margin:3px 3px;"
+                @click="saveData(item)"
               >
                 <i class="fa fa-edit"></i>
               </b-button>
@@ -46,20 +47,20 @@
                 <i class="fa fa-trash"></i>
               </b-button>
             </td>
-            <b-modal
-              id="modal-center"
-              centered
-              title="Edit Item"
-              ok-only
-              ok-variant="secondary"
-              ok-title="Cancel"
-            >
-              <EditForm :product="item"></EditForm>
-            </b-modal>
           </tr>
         </tbody>
       </table>
     </div>
+    <b-modal
+      id="modal-center"
+      centered
+      title="Edit Item"
+      ok-only
+      ok-variant="secondary"
+      ok-title="Cancel"
+    >
+      <EditForm :product="dataProduct"></EditForm>
+    </b-modal>
   </div>
 </template>
 
@@ -75,7 +76,8 @@ export default {
   },
   data() {
     return {
-      dataItem: null
+      dataItem: null,
+      dataProduct: null
     };
   },
   computed: {
@@ -99,6 +101,9 @@ export default {
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
       });
+    },
+    saveData(data){
+      this.dataProduct = data
     }
   }
 };

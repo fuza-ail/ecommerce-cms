@@ -26,7 +26,7 @@ export default {
     login() {
       axios({
         method: "post",
-        url: "https://sleepy-woodland-73566.herokuapp.com/admin/login",
+        url: "http://localhost:3000/admin/login",
         data: {
           email: this.email,
           password: this.password
@@ -43,9 +43,9 @@ export default {
           localStorage.setItem("access_token", response.data.access_token);
           this.$store.commit("fillToken", response.data);
           this.$router.push({ path: "/admin/dashboard" });
-          console.log(response)
         })
         .catch(err => {
+          console.log(err.response)
           Swal.fire({
             icon: "error",
             title: "Oops...",
