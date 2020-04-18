@@ -1,7 +1,7 @@
 'use strict';
 require('dotenv').config()
 const bcrypt = require('bcryptjs')
-const salt = 8
+const salt = bcrypt.genSaltSync(8);
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

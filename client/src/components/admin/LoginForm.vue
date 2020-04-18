@@ -26,7 +26,7 @@ export default {
     login() {
       axios({
         method: "post",
-        url: "http://localhost:3000/admin/login",
+        url: "https://sleepy-woodland-73566.herokuapp.com/admin/login",
         data: {
           email: this.email,
           password: this.password
