@@ -1,9 +1,14 @@
 const request = require('supertest');
 const app = require('../server');
+const { sequelize } = require('../models');
+const { queryInterface } = sequelize;
 
-// afterAll(()=>{
-
-// })
+afterAll(done => {
+  queryInterface
+    .bulkDelete('Admins', {})
+    .then(() => done())
+    .catch(err => done(err))
+});
 
 describe('Admin routes',()=>{
   describe('Post /admin/login',()=>{

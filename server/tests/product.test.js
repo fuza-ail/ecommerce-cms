@@ -2,6 +2,15 @@ const request = require('supertest');
 const app = require('../server');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const { sequelize } = require('../models');
+const { queryInterface } = sequelize;
+
+afterAll(done => {
+  queryInterface
+    .bulkDelete('Products', {})
+    .then(() => done())
+    .catch(err => done(err))
+});
 
 // const {Admin,Product} = require('../models');
 const db = require('sequelize')
