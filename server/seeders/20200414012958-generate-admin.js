@@ -1,13 +1,13 @@
 'use strict';
 require('dotenv').config()
-const { hashPassword } = require('../helpers/bcrypt');
-let pass = hashPassword('rahasia')
+const bcrypt = require('bcryptjs')
+const salt = 8
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Admins', [{
       email: 'admin@gmail.com',
-      password: pass,
+      password: bcrypt.hashSync('rahasia', salt),
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
