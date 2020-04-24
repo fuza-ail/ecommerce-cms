@@ -46,6 +46,7 @@
               >
                 <i class="fa fa-trash"></i>
               </b-button>
+              <b-button v-b-modal="'detail'" @click="saveData(item)" >detail</b-button>
             </td>
           </tr>
         </tbody>
@@ -54,12 +55,23 @@
     <b-modal
       id="modal-center"
       centered
-      title="Edit Item"
+      title="Detail Product"
       ok-only
       ok-variant="secondary"
       ok-title="Cancel"
     >
       <EditForm :product="dataProduct"></EditForm>
+    </b-modal>
+
+    <b-modal
+      id="detail"
+      centered
+      title="Detail Product"
+      ok-only
+      ok-variant="secondary"
+      ok-title="Cancel"
+    >
+      <Detail :prod="dataProduct"></Detail>
     </b-modal>
   </div>
 </template>
@@ -67,12 +79,14 @@
 <script>
 import AddProduct from "./AddProduct";
 import EditForm from "./EditForm";
+import Detail from "./Detail"
 
 export default {
   name: "MainSection",
   components: {
     AddProduct,
-    EditForm
+    EditForm,
+    Detail
   },
   data() {
     return {

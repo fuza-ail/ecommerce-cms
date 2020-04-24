@@ -14,7 +14,7 @@ export default new Vuex.Store({
   mutations: {
     fillToken(state,payload){
       state.token = payload;
-      state.isLogin= true;
+      state.isLogin = true;
     },
     fillData(state,payload){
       state.products = payload

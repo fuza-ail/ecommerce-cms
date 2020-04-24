@@ -1,7 +1,17 @@
 const request = require('supertest');
 const app = require('../server');
-const { sequelize } = require('../models');
+const { sequelize, Admin } = require('../models');
 const { queryInterface } = sequelize;
+
+beforeAll(done => {
+  Admin.create({email: 'admin@gmail.com', password:'rahasia'})
+    .then(_ => {
+      done()
+    })
+    .catch(err => {
+      done(err)
+    })
+})
 
 afterAll(done => {
   queryInterface
